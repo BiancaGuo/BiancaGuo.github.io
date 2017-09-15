@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+<meta charset="utf-8" />
+<title>VUE_test</title>
+</head>
+    
+<style>
+.class1{
+    background: #444;
+    color: #eee;
+    }
+</style>
+
+<body>   
+<script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
+
+
+
+<div id="app">
+<!--    lable for 属性，规定lable和哪个表单单元绑定-->
+    <lable for="r1">修改颜色</lable>
+<!--    v-model：把class1数据绑定到input-->
+    <input type="checkbox" v-model="class1" id="r1">
+    <br><br>
+    <div v-bind:class="{'class1': class1}">
+        directiva v-bind:class
+    </div>
+    
+	{{5+5}}<br>
+	{{ ok ? 'YES' : 'NO' }}<br>
+	{{ message.split('').reverse().join('') }}
+	<div v-bind:id="'list-' + id">菜鸟教程</div>
+    
+    <p v-if="seen">能看到吗</p>
+    <p>{{ message2 }}</p>
+    <input v-model="message2">
+    
+    <p>{{ message3 }}</p>
+    <button v-on:click="reverseMessage">反转字符串</button>
+    
+    <p>{{ message4 | capitalize }}</p>
+</div>
+    
+<script>
+//new Vue({
+//    el:'#app',
+//    data:{
+////        message: 'Hello Vue.js',
+//        
+//        
+//    }
+//});
+//    
+    
+new Vue({
+    el:'#app',
+    data:{
+        seen: false,
+        class1: false,
+        ok: true,
+        message: 'VUE',
+        id : 1,
+        message2: 'hello',
+        message3:'Hello',
+        message4:'hello'
+    },
+    methods: {
+        reverseMessage: function () {
+            this.message3 = this.message3.split('').reverse().join('')
+        }
+    },
+    filters: {
+        capitalize: function (value) {
+            if (!value) return ''
+            value = value.toString()
+            return value.charAt(0).toUpperCase() + value.slice(1)
+        }
+    }
+})
+</script>
+</body>
+</html>
